@@ -1,0 +1,22 @@
+# CI：每次推送与 PR 运行检查与安全扫描。
+# penpot-auth 以 podman + systemd 运行在 moon 上（见 penpot-auth.service），暂不走容器发布流水线。
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  ci:
+    uses: HinaKalo/moon-infra/.github/workflows/ci-python.yml@main
+
+  security:
+    uses: HinaKalo/moon-infra/.github/workflows/security.yml@main
+    permissions:
+      contents: read
+      security-events: write
+      actions: read

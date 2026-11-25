@@ -1,0 +1,53 @@
+:root {
+  color-scheme: dark;
+  font-family: "Segoe UI", "Microsoft YaHei UI", "PingFang SC", sans-serif;
+  background: #18181a;
+  color: #f4f4f6;
+  --accent: #91f5cd;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body {
+  margin: 0;
+  padding: clamp(2rem, 11vh, 7rem) 1.25rem 2rem;
+}
+main {
+  margin-inline: auto;
+  max-width: 25rem;
+  padding: clamp(1.5rem, 5vw, 2.5rem);
+  background: #232326;
+  border: 1px solid #3b3b42;
+  border-radius: 12px;
+}
+.brand { display: block; margin-bottom: 1.25rem; }
+h1 { margin: 0 0 1.75rem; font-size: 1.7rem; line-height: 1.25; font-weight: 650; }
+form { display: grid; gap: 1.15rem; }
+.field { display: grid; gap: .45rem; }
+label, .hint, .error, .switch { font-size: .925rem; }
+input:not([type="hidden"]), button {
+  width: 100%;
+  min-height: 2.9rem;
+  border-radius: 6px;
+  font: inherit;
+}
+input:not([type="hidden"]) {
+  border: 1px solid #65656f;
+  background: #19191c;
+  color: inherit;
+  padding: .65rem .8rem;
+}
+input:focus-visible, button:focus-visible, a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+button {
+  border: 0;
+  padding-inline: .9rem;
+  color: #14231d;
+  background: var(--accent);
+  font-weight: 650;
+  cursor: pointer;
+}
+button:hover { background: #b0f9df; }
+.hint { color: #b9b9c0; margin: 0; }
+.error { color: #ffb9bc; margin: 0 0 1rem; line-height: 1.5; }
+.switch { display: inline-block; color: var(--accent); margin-top: 1.25rem; text-underline-offset: .2em; }

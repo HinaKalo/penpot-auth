@@ -1,0 +1,22 @@
+@usernameAuth path /auth/* /js/config.js
+handle @usernameAuth {
+	reverse_proxy unix//run/penpot-auth/socket/http.sock {
+		header_up X-Penpot-Client {remote_host}
+	}
+}
+
+@changeEmail path /api/rpc/command/request-email-change /api/main/methods/request-email-change
+handle @changeEmail {
+	header Content-Type application/json
+	respond "{\"type\":\"restriction\",\"code\":\"username-account-email-fixed\"}" 403
+}
+
+handle {
+	reverse_proxy 127.0.0.1:19610
+}
+
+handle_errors {
+	handle /js/config.js {
+		reverse_proxy 127.0.0.1:19610
+	}
+}

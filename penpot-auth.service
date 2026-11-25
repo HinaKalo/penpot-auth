@@ -1,0 +1,18 @@
+[Unit]
+Description=Penpot username login and registration
+Requires=penpot.service
+After=penpot.service
+PartOf=penpot.service
+
+[Service]
+Type=simple
+RuntimeDirectory=penpot-auth
+RuntimeDirectoryMode=0755
+ExecStartPre=/usr/bin/install -d -m 0750 -o 1001 -g caddy /run/penpot-auth/socket
+ExecStart=/usr/bin/podman run --rm --replace --name penpot-auth --network container:penpot_penpot-backend_1 --user 1001:988 --read-only --cap-drop ALL --security-opt no-new-privileges --memory 128m --pids-limit 64 --volume /opt/penpot-auth:/app:ro --volume /run/penpot-auth/socket:/run/penpot-auth:rw docker.io/library/python@sha256:9ef1a599f863231c3d91e941389bfdc4a2d6070557243d54df1a4e57015b960e python3 -I /app/auth.py
+ExecStop=/usr/bin/podman stop --ignore --time 8 penpot-auth
+Restart=on-failure
+RestartSec=4s
+
+[Install]
+WantedBy=multi-user.target penpot.service

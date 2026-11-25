@@ -1,0 +1,5 @@
+# 单文件服务，直接使用根日志器即可（日志格式在 auth.py 顶部统一设置）
+target-version = "py312"
+
+[lint]
+ignore = ["LOG015"]

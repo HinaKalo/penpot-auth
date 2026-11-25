@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{heading} · Penpot</title>
+  <link rel="stylesheet" href="/auth/account.css">
+</head>
+<body>
+  <main>
+    <img class="brand" src="/images/favicon.svg" alt="" width="28" height="28">
+    <h1>{heading}</h1>
+    {error}
+    <form action="{form_action}" method="post">
+      <input name="next" type="hidden" value="{destination}">
+      <div class="field">
+        <label for="username">用户名</label>
+        <input id="username" name="username" type="text" value="{username}" autocomplete="username" autocapitalize="none" spellcheck="false" maxlength="64" required autofocus>
+      </div>
+      <div class="field">
+        <label for="password">密码</label>
+        <input id="password" name="password" type="password" autocomplete="{autocomplete}" maxlength="128" {password_attrs} required>
+        {password_hint}
+      </div>
+      <button type="submit">{action}</button>
+    </form>
+    <a class="switch" href="{other_link}">{other_text}</a>
+  </main>
+</body>
+</html>
